@@ -74,20 +74,14 @@
 }
 
 .service-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 32px 24px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .service-card:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
   transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
-
 .service-icon {
   font-size: 40px;
   margin-bottom: 16px;

@@ -1,53 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  AppBar,
-  Toolbar,
+  Box,
+  Container,
   Typography,
-  Button,
-  IconButton,
   Drawer,
   List,
   ListItem,
   ListItemText,
-  Box,
-  Container,
+  ListItemIcon,
+  IconButton,
+  Badge,
   Menu,
   MenuItem,
   Avatar,
-  Chip,
-  Badge,
 } from '@mui/material';
 import {
-  Menu as MenuIcon,
   LocalHospital,
+  ExpandMore, // Changed from ChevronDown
   ShoppingCart,
-  AccountCircle,
+  Person,
+  Close,
+  LocationOn,
+  LocalPharmacy,
+  Science,
   Dashboard,
   ExitToApp,
+  Settings,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from '../../contexts/LocationContext';
+import { useNavigate, useLocation as useRouterLocation } from 'react-router-dom'; // Renamed to avoid conflict
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
+import { useLocation } from '../../contexts/LocationContext'; // This is our custom context
 import LocationDisplay from './LocationDisplay';
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuAnchor, setUserMenuAnchor] = useState(null);
   const navigate = useNavigate();
-  const { selectedLocation } = useLocation();
-  const { user, logout, setIsLoginModalOpen, setIsSignupModalOpen } = useAuth();
+  const currentPath = useRouterLocation().pathname; // Using the renamed import
+
+  const { user, logout } = useAuth();
   const { getCartItemsCount, setIsCartOpen } = useCart();
+  const { selectedLocation } = useLocation();
 
-  const menuItems = [
-    { text: 'Doctors', path: '/doctors' },
-    { text: 'Pharmacy', path: '/pharmacy' },
-    { text: 'Lab Tests', path: '/lab-tests' },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
+    };
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleUserMenuOpen = (event) => {
     setUserMenuAnchor(event.currentTarget);
@@ -57,191 +62,277 @@ const Navbar = () => {
     setUserMenuAnchor(null);
   };
 
-  const handleLogin = () => {
-    setIsLoginModalOpen(true);
-  };
-
-  const handleSignup = () => {
-    setIsSignupModalOpen(true);
-  };
-
   const handleLogout = () => {
     logout();
     handleUserMenuClose();
     navigate('/');
   };
 
-  const handleDashboard = () => {
-    navigate('/dashboard');
-    handleUserMenuClose();
+  const handleMobileToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
+
+  const handleNavClick = (path) => {
+    navigate(path);
+    setMobileOpen(false);
+  };
+
+  const navItems = [
+    { path: '/doctors', label: 'Doctors', icon: <Person /> },
+    { path: '/pharmacy', label: 'Pharmacy', icon: <LocalPharmacy /> },
+    { path: '/lab-tests', label: 'Lab Tests', icon: <Science /> },
+  ];
+
+  const isActive = (path) => currentPath === path;
 
   return (
     <>
-      <AppBar position="sticky" className="navbar">
+      <header className={`healthcare-navbar ${scrolled ? 'scrolled' : ''}`}>
         <Container maxWidth="xl" className="navbar-container">
-          <Toolbar className="navbar-toolbar">
+          <div className="navbar-main">
             {/* Logo */}
-            <Box className="navbar-logo" onClick={() => navigate('/')}>
-              <LocalHospital className="navbar-logo-icon" />
-              <Typography variant="h6" className="navbar-logo-text">
-                Local Health
-              </Typography>
-            </Box>
+            <a 
+              href="/" 
+              className="navbar-brand"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/');
+              }}
+            >
+              <div className="logo-container">
+                <LocalHospital className="logo-icon" />
+                <div className="logo-pulse" />
+              </div>
+              <div className="logo-text">
+                <span className="logo-primary">LocalHealth</span>
+                <span className="logo-subtitle">Healthcare</span>
+              </div>
+            </a>
 
-            {/* Location Display - Desktop */}
-            <Box className="navbar-location mobile-hidden">
-              <LocationDisplay />
-            </Box>
-
-            {/* Desktop Menu */}
-            <Box className="navbar-menu mobile-hidden">
-              {menuItems.map((item) => (
-                <Button
-                  key={item.text}
-                  className="navbar-menu-button"
-                  onClick={() => navigate(item.path)}
-                >
-                  {item.text}
-                </Button>
+            {/* Desktop Navigation */}
+            <nav className="navbar-nav">
+              {navItems.map((item) => (
+                <div key={item.path} className="nav-item">
+                  <a
+                    href={item.path}
+                    className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(item.path);
+                    }}
+                  >
+                    <span className="nav-icon">{item.icon}</span>
+                    {item.label}
+                  </a>
+                </div>
               ))}
-              
+            </nav>
+
+            {/* Location */}
+            <div className="navbar-location">
+              <LocationDisplay />
+            </div>
+
+            {/* User Actions */}
+            <div className="navbar-actions">
+              {/* Cart Button */}
+              <button
+                className="action-button cart-button"
+                onClick={() => setIsCartOpen(true)}
+              >
+                <ShoppingCart />
+                {getCartItemsCount() > 0 && (
+                  <span className="cart-badge">
+                    {getCartItemsCount()}
+                  </span>
+                )}
+              </button>
+
+              {/* User Profile or Auth Buttons */}
               {user ? (
                 <>
-                  <Chip
-                    avatar={<Avatar src={user.avatar} alt={user.name} />}
-                    label={user.name}
+                  <button
+                    className="user-profile"
                     onClick={handleUserMenuOpen}
-                    className="navbar-user-chip"
-                  />
-                  <IconButton 
-                    className="navbar-cart-icon"
-                    onClick={() => setIsCartOpen(true)}
                   >
-                    <Badge badgeContent={getCartItemsCount()} color="secondary">
-                      <ShoppingCart />
-                    </Badge>
-                  </IconButton>
+                    <Avatar
+                      src={user.avatar}
+                      alt={user.name}
+                      className="user-avatar"
+                    />
+                    <div className="user-info">
+                      <span className="user-name">{user.name}</span>
+                      <span className="user-role">Patient</span>
+                    </div>
+                    <ExpandMore className="chevron-icon" /> {/* Fixed icon */}
+                  </button>
+
                   <Menu
                     anchorEl={userMenuAnchor}
                     open={Boolean(userMenuAnchor)}
                     onClose={handleUserMenuClose}
-                    className="navbar-user-menu"
+                    className="user-menu"
+                    PaperProps={{
+                      style: {
+                        marginTop: '8px',
+                        borderRadius: '12px',
+                        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+                        border: '1px solid #e2e8f0',
+                      },
+                    }}
                   >
-                    <MenuItem onClick={handleDashboard}>
-                      <Dashboard sx={{ mr: 1 }} />
+                    <MenuItem onClick={() => { navigate('/dashboard'); handleUserMenuClose(); }}>
+                      <ListItemIcon>
+                        <Dashboard fontSize="small" />
+                      </ListItemIcon>
                       Dashboard
                     </MenuItem>
                     <MenuItem onClick={handleUserMenuClose}>
-                      <AccountCircle sx={{ mr: 1 }} />
+                      <ListItemIcon>
+                        <Person fontSize="small" />
+                      </ListItemIcon>
                       Profile
                     </MenuItem>
+                    <MenuItem onClick={handleUserMenuClose}>
+                      <ListItemIcon>
+                        <Settings fontSize="small" />
+                      </ListItemIcon>
+                      Settings
+                    </MenuItem>
                     <MenuItem onClick={handleLogout}>
-                      <ExitToApp sx={{ mr: 1 }} />
+                      <ListItemIcon>
+                        <ExitToApp fontSize="small" />
+                      </ListItemIcon>
                       Logout
                     </MenuItem>
                   </Menu>
                 </>
               ) : (
-                <>
-                  <Button
-                    variant="outlined"
-                    onClick={handleLogin}
-                    className="btn btn-outline"
+                <div className="auth-buttons">
+                  <button
+                    className="login-button"
+                    onClick={() => navigate('/login')}
                   >
                     Login
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={handleSignup}
-                    className="btn btn-primary"
+                  </button>
+                  <button
+                    className="signup-button"
+                    onClick={() => navigate('/signup')}
                   >
                     Sign Up
-                  </Button>
-                </>
+                  </button>
+                </div>
               )}
-            </Box>
 
-            {/* Mobile Menu Button */}
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              className="navbar-mobile-button"
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-
-          {/* Location Display - Mobile */}
-          <Box className="navbar-mobile-location tablet-hidden">
-            <LocationDisplay />
-          </Box>
+              {/* Mobile Menu Button */}
+              <button
+                className={`mobile-menu-button ${mobileOpen ? 'active' : ''}`}
+                onClick={handleMobileToggle}
+              >
+                <span className="menu-line"></span>
+                <span className="menu-line"></span>
+                <span className="menu-line"></span>
+              </button>
+            </div>
+          </div>
         </Container>
-      </AppBar>
+      </header>
 
       {/* Mobile Drawer */}
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{ keepMounted: true }}
-        className="navbar-drawer"
-      >
-        <List className="navbar-drawer-list">
-          {/* Location in Mobile Drawer */}
-          <ListItem>
+      <div 
+        className={`drawer-overlay ${mobileOpen ? 'open' : ''}`}
+        onClick={handleMobileToggle}
+      />
+      
+      <div className={`mobile-drawer ${mobileOpen ? 'open' : ''}`}>
+        <div className="drawer-header">
+          <div className="navbar-brand">
+            <div className="logo-container">
+              <LocalHospital className="logo-icon" />
+            </div>
+            <div className="logo-text">
+              <span className="logo-primary">LocalHealth</span>
+              <span className="logo-subtitle">Healthcare</span>
+            </div>
+          </div>
+          <button className="drawer-close" onClick={handleMobileToggle}>
+            <Close />
+          </button>
+        </div>
+
+        <div className="drawer-content">
+          {/* Location in Drawer */}
+          <div className="drawer-location">
             <LocationDisplay />
-          </ListItem>
-          <ListItem>
-            <ListItemText 
-              primary={`Current: ${selectedLocation ? `${selectedLocation.name}, ${selectedLocation.state}` : 'Not set'}`}
-            />
-          </ListItem>
-          
-          {menuItems.map((item) => (
-            <ListItem
-              button
-              key={item.text}
-              onClick={() => {
-                navigate(item.path);
-                handleDrawerToggle();
-              }}
-            >
-              <ListItemText primary={item.text} />
-            </ListItem>
-          ))}
-          
-          {user ? (
-            <>
-              <ListItem button onClick={handleDashboard}>
-                <ListItemText primary="Dashboard" />
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Profile" />
-              </ListItem>
-              <ListItem button onClick={() => setIsCartOpen(true)}>
-                <ListItemText 
-                  primary={`Cart (${getCartItemsCount()})`} 
-                />
-              </ListItem>
-              <ListItem button onClick={handleLogout}>
-                <ListItemText primary="Logout" />
-              </ListItem>
-            </>
-          ) : (
-            <>
-              <ListItem button onClick={handleLogin}>
-                <ListItemText primary="Login" />
-              </ListItem>
-              <ListItem button onClick={handleSignup}>
-                <ListItemText primary="Sign Up" />
-              </ListItem>
-            </>
-          )}
-        </List>
-      </Drawer>
+          </div>
+
+          {/* Navigation in Drawer */}
+          <nav className="drawer-nav">
+            {navItems.map((item) => (
+              <a
+                key={item.path}
+                href={item.path}
+                className={`drawer-nav-item ${isActive(item.path) ? 'active' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.path);
+                }}
+              >
+                <span className="drawer-nav-icon">{item.icon}</span>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* User Section in Drawer */}
+          <div className="drawer-actions">
+            {user ? (
+              <>
+                <a
+                  href="/dashboard"
+                  className="drawer-nav-item"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('/dashboard');
+                  }}
+                >
+                  <span className="drawer-nav-icon">
+                    <Dashboard />
+                  </span>
+                  Dashboard
+                </a>
+                <button
+                  className="drawer-nav-item"
+                  onClick={handleLogout}
+                  style={{ background: 'none', border: 'none', textAlign: 'left' }}
+                >
+                  <span className="drawer-nav-icon">
+                    <ExitToApp />
+                  </span>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="login-button"
+                  onClick={() => handleNavClick('/login')}
+                  style={{ width: '100%' }}
+                >
+                  Login
+                </button>
+                <button
+                  className="signup-button"
+                  onClick={() => handleNavClick('/signup')}
+                  style={{ width: '100%' }}
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

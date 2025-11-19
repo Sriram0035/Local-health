@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-  Box,
-  Typography,
   Menu,
   MenuItem,
   ListItemIcon,
   ListItemText,
   Chip,
+  Box,
 } from '@mui/material';
 import {
   LocationOn,
@@ -45,49 +44,41 @@ const LocationDisplay = () => {
 
   if (!selectedLocation) {
     return (
-      <Chip
-        icon={<LocationOn />}
-        label="Select Location"
-        onClick={handleClick}
-        variant="outlined"
-        color="primary"
-        clickable
-      />
+      <button className="location-trigger" onClick={handleClick}>
+        <LocationOn className="location-icon" />
+        <div className="location-info">
+          <span className="location-label">Location</span>
+          <span className="location-value">Select Location</span>
+        </div>
+      </button>
     );
   }
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          cursor: 'pointer',
-          p: 1,
-          borderRadius: 2,
-          '&:hover': {
-            backgroundColor: 'action.hover',
-          },
-        }}
-        onClick={handleClick}
-      >
-        <LocationOn sx={{ color: 'primary.main', mr: 1, fontSize: 20 }} />
-        <Box>
-          <Typography variant="subtitle2" sx={{ fontWeight: 'bold', lineHeight: 1 }}>
-            Deliver to
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1 }}>
+      <button className="location-trigger" onClick={handleClick}>
+        <LocationOn className="location-icon" />
+        <div className="location-info">
+          <span className="location-label">Your Location</span>
+          <span className="location-value">
             {selectedLocation.name}, {selectedLocation.state}
-          </Typography>
-        </Box>
-      </Box>
+          </span>
+        </div>
+      </button>
 
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        className="location-menu"
         PaperProps={{
-          sx: { borderRadius: 2, minWidth: 200 }
+          style: {
+            marginTop: '8px',
+            borderRadius: '12px',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid #e2e8f0',
+            minWidth: '200px',
+          },
         }}
       >
         <MenuItem onClick={handleChangeLocation}>
@@ -105,20 +96,20 @@ const LocationDisplay = () => {
         </MenuItem>
 
         <Box sx={{ px: 2, py: 1 }}>
-          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-            Quick Select
-          </Typography>
-          {popularLocations.slice(0, 3).map((location) => (
-            <Chip
-              key={location.id}
-              label={`${location.name}`}
-              size="small"
-              onClick={() => handleQuickSelect(location)}
-              sx={{ m: 0.5 }}
-              variant={selectedLocation.id === location.id ? 'filled' : 'outlined'}
-              color="primary"
-            />
-          ))}
+          <div className="location-quick-title">Quick Select</div>
+          <div className="location-quick-chips">
+            {popularLocations.slice(0, 3).map((location) => (
+              <Chip
+                key={location.id}
+                label={location.name}
+                size="small"
+                onClick={() => handleQuickSelect(location)}
+                style={{ margin: '2px' }}
+                variant={selectedLocation.id === location.id ? 'filled' : 'outlined'}
+                color="primary"
+              />
+            ))}
+          </div>
         </Box>
       </Menu>
     </>

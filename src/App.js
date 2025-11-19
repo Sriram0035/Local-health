@@ -21,6 +21,9 @@ import './styles/Cart.css';
 import './styles/Booking.css';
 import './styles/Chat.css';
 import './styles/HealthRecords.css';
+import './styles/AI.css';
+import './styles/Reminders.css';
+import './styles/HealthTracker.css';
 
 // Context
 import { LocationProvider } from './contexts/LocationContext';
@@ -29,6 +32,8 @@ import { CartProvider } from './contexts/CartContext';
 import { BookingProvider } from './contexts/BookingContext';
 import { ChatProvider } from './contexts/ChatContext';
 import { HealthRecordsProvider } from './contexts/HealthRecordsContext';
+import { AIProvider } from './contexts/AIContext';
+import { ReminderProvider } from './contexts/ReminderContext';
 
 // Components
 import Navbar from './components/common/Navbar';
@@ -40,6 +45,9 @@ import CartDrawer from './components/cart/CartDrawer';
 import DoctorBookingModal from './components/booking/DoctorBookingModal';
 import ChatWidget from './components/chat/ChatWidget';
 import HealthRecordsManager from './components/health/HealthRecordsManager';
+import SymptomChecker from './components/ai/SymptomChecker';
+import MedicineReminder from './components/reminders/MedicineReminder';
+import HealthTracker from './components/health/HealthTracker';
 
 // Pages
 import Home from './pages/Home';
@@ -79,29 +87,36 @@ function App() {
               <BookingProvider>
                 <ChatProvider>
                   <HealthRecordsProvider>
-                    <Router>
-                      <div className="App">
-                        <Navbar />
-                        <main>
-                          <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/doctors" element={<Doctors />} />
-                            <Route path="/pharmacy" element={<Pharmacy />} />
-                            <Route path="/lab-tests" element={<LabTests />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/checkout" element={<Checkout />} />
-                          </Routes>
-                        </main>
-                        <Footer />
-                        <LocationSelector />
-                        <LoginModal />
-                        <SignupModal />
-                        <CartDrawer />
-                        <DoctorBookingModal />
-                        <ChatWidget />
-                        <HealthRecordsManager />
-                      </div>
-                    </Router>
+                    <AIProvider>
+                      <ReminderProvider>
+                        <Router>
+                          <div className="App">
+                            <Navbar />
+                            <main>
+                              <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/doctors" element={<Doctors />} />
+                                <Route path="/pharmacy" element={<Pharmacy />} />
+                                <Route path="/lab-tests" element={<LabTests />} />
+                                <Route path="/dashboard" element={<Dashboard />} />
+                                <Route path="/checkout" element={<Checkout />} />
+                              </Routes>
+                            </main>
+                            <Footer />
+                            <LocationSelector />
+                            <LoginModal />
+                            <SignupModal />
+                            <CartDrawer />
+                            <DoctorBookingModal />
+                            <ChatWidget />
+                            <HealthRecordsManager />
+                            <SymptomChecker />
+                            <MedicineReminder />
+                            <HealthTracker />
+                          </div>
+                        </Router>
+                      </ReminderProvider>
+                    </AIProvider>
                   </HealthRecordsProvider>
                 </ChatProvider>
               </BookingProvider>

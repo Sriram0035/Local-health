@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Typography,
@@ -16,34 +16,81 @@ import {
   Emergency,
   AccessTime,
   Security,
+  MonitorHeart,
+  Notifications,
+  TrendingUp,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { useBooking } from '../contexts/BookingContext';
+import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
+
+// Import modal components
+import SymptomChecker from '../components/ai/SymptomChecker';
+import MedicineReminder from '../components/reminders/MedicineReminder';
+import HealthTracker from '../components/health/HealthTracker';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const { openBookingModal } = useBooking();
+  const { user, setIsLoginModalOpen } = useAuth();
+  const { setIsCartOpen } = useCart();
+
+  // State for modals
+  const [symptomCheckerOpen, setSymptomCheckerOpen] = useState(false);
+  const [medicineReminderOpen, setMedicineReminderOpen] = useState(false);
+  const [healthTrackerOpen, setHealthTrackerOpen] = useState(false);
+
   const services = [
     {
       icon: <LocalHospital />,
       title: 'Consult Doctors',
       description: 'Video consultation with top doctors',
       color: 'var(--primary-main)',
+      action: () => navigate('/doctors'),
     },
     {
       icon: <MedicalServices />,
       title: 'Medicines',
       description: 'Get medicines delivered to your doorstep',
       color: '#1976D2',
+      action: () => navigate('/pharmacy'),
     },
     {
       icon: <Science />,
       title: 'Lab Tests',
       description: 'Book tests and checkups',
       color: '#ED6C02',
+      action: () => navigate('/lab-tests'),
     },
     {
       icon: <Emergency />,
       title: 'Emergency Care',
       description: '24/7 emergency services',
       color: '#D32F2F',
+      action: () => handleEmergencyCare(),
+    },
+    {
+      icon: <MonitorHeart />,
+      title: 'Symptom Checker',
+      description: 'AI-powered preliminary health assessment',
+      color: '#9C27B0',
+      action: () => setSymptomCheckerOpen(true),
+    },
+    {
+      icon: <Notifications />,
+      title: 'Medicine Reminder',
+      description: 'Never miss your medication schedule',
+      color: '#FF9800',
+      action: () => setMedicineReminderOpen(true),
+    },
+    {
+      icon: <TrendingUp />,
+      title: 'Health Tracker',
+      description: 'Monitor your vital signs and progress',
+      color: '#2196F3',
+      action: () => setHealthTrackerOpen(true),
     },
   ];
 
@@ -59,6 +106,42 @@ const Home = () => {
       description: 'Your health data is protected',
     },
   ];
+
+  const handleBookAppointment = () => {
+    if (!user) {
+      setIsLoginModalOpen(true);
+      return;
+    }
+    // Navigate to doctors page for booking
+    navigate('/doctors');
+  };
+
+  const handleEmergencyCare = () => {
+    // Mock emergency doctor for quick booking
+    const emergencyDoctor = {
+      id: 999,
+      name: 'Emergency Physician',
+      specialty: 'Emergency Medicine',
+      experience: '10+ years',
+      rating: 4.9,
+      reviews: 2500,
+      fee: '₹800',
+      image: '/api/placeholder/200/200',
+      available: true,
+      location: 'Emergency Department',
+    };
+
+    if (!user) {
+      setIsLoginModalOpen(true);
+      return;
+    }
+
+    openBookingModal(emergencyDoctor);
+  };
+
+  const handleServiceClick = (service) => {
+    service.action();
+  };
 
   return (
     <Box>
@@ -84,6 +167,7 @@ const Home = () => {
                   variant="contained"
                   size="large"
                   className="btn btn-primary btn-lg"
+                  onClick={handleBookAppointment}
                 >
                   Book Appointment
                 </Button>
@@ -115,12 +199,16 @@ const Home = () => {
         </Typography>
         <Grid container spacing={4} className="services-grid">
           {services.map((service, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="service-card">
+                <Card 
+                  className="service-card"
+                  onClick={() => handleServiceClick(service)}
+                  sx={{ cursor: 'pointer' }}
+                >
                   <CardContent>
                     <Box
                       className="service-icon"
@@ -164,6 +252,20 @@ const Home = () => {
           </Grid>
         </Container>
       </Box>
+
+      {/* Modals */}
+      <SymptomChecker 
+        open={symptomCheckerOpen} 
+        onClose={() => setSymptomCheckerOpen(false)} 
+      />
+      <MedicineReminder 
+        open={medicineReminderOpen} 
+        onClose={() => setMedicineReminderOpen(false)} 
+      />
+      <HealthTracker 
+        open={healthTrackerOpen} 
+        onClose={() => setHealthTrackerOpen(false)} 
+      />
     </Box>
   );
 };
