@@ -1,0 +1,180 @@
+.location-dialog {
+  border-radius: 12px;
+}
+
+.location-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.location-dialog-title-text {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.location-dialog-content {
+  padding: 1.5rem;
+}
+
+.location-detect-button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--primary-main);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primary-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.location-detect-button:hover {
+  background-color: rgba(46, 125, 50, 0.05);
+}
+
+.location-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+}
+
+.location-divider::before,
+.location-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--grey-300);
+}
+
+.location-divider-chip {
+  padding: 0 1rem;
+}
+
+.location-search {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.location-search-input {
+  padding-left: 12px;
+}
+
+.location-section-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.location-list {
+  max-height: 300px;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.location-item:hover {
+  background-color: var(--grey-100);
+}
+
+.location-item-icon {
+  margin-right: 12px;
+  color: var(--primary-main);
+}
+
+.location-item-text {
+  flex: 1;
+}
+
+.location-item-primary {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.location-item-secondary {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.location-empty {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-secondary);
+}
+
+/* Location Display Styles */
+.location-display {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.location-display:hover {
+  background-color: var(--grey-100);
+}
+
+.location-display-icon {
+  color: var(--primary-main);
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.location-display-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-display-label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.location-display-value {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.location-menu {
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.location-quick-select {
+  padding: 8px 16px;
+}
+
+.location-quick-title {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.location-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

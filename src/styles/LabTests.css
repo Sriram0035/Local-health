@@ -1,0 +1,147 @@
+.lab-tests-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.lab-tests-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lab-tests-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.lab-tests-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.lab-tests-search {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.lab-tests-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.lab-tests-feature {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.lab-tests-feature-icon {
+  font-size: 30px;
+  color: var(--primary-main);
+  margin-bottom: 1rem;
+}
+
+.lab-tests-feature-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.lab-tests-feature-description {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.lab-tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.lab-test-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+}
+
+.lab-test-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.lab-test-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.lab-test-icon {
+  color: var(--primary-main);
+  margin-right: 8px;
+}
+
+.lab-test-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.lab-test-description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.lab-test-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.lab-test-pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.lab-test-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.lab-test-current-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-main);
+}
+
+.lab-test-original-price {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .lab-tests-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .lab-tests-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lab-tests-title {
+    font-size: 2rem;
+  }
+}

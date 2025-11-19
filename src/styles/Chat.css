@@ -1,0 +1,228 @@
+.chat-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+}
+
+.chat-drawer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .chat-drawer {
+    width: 400px;
+  }
+}
+
+.chat-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+  background-color: var(--white);
+}
+
+.chat-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.chat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat List Styles */
+.chat-list-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.chat-list-empty-icon {
+  font-size: 64px;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.chat-list-empty-title {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.chat-list-empty-description {
+  color: var(--text-secondary);
+}
+
+.chat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-list-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-list-item:hover {
+  background-color: var(--grey-50);
+}
+
+.chat-list-avatar {
+  margin-right: 1rem;
+}
+
+.chat-list-details {
+  flex: 1;
+}
+
+.chat-list-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.chat-list-preview {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Active Chat Styles */
+.chat-active-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+  background-color: var(--primary-main);
+  color: var(--white);
+}
+
+.chat-doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chat-doctor-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.chat-doctor-details {
+  flex: 1;
+}
+
+.chat-doctor-name {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.chat-doctor-specialty {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow: auto;
+  background-color: var(--grey-50);
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.chat-message.patient {
+  justify-content: flex-end;
+}
+
+.chat-message.doctor {
+  justify-content: flex-start;
+}
+
+.chat-message-bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  position: relative;
+}
+
+.chat-message.patient .chat-message-bubble {
+  background-color: var(--primary-main);
+  color: var(--white);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message.doctor .chat-message-bubble {
+  background-color: var(--white);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message-text {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.chat-message-time {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  text-align: right;
+}
+
+.chat-input {
+  padding: 1rem;
+  border-top: 1px solid var(--grey-200);
+  background-color: var(--white);
+}
+
+.chat-input-form {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.chat-input-field {
+  flex: 1;
+}
+
+.chat-send-button {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--primary-main);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.chat-send-button:hover {
+  background-color: var(--grey-100);
+}
+
+.chat-send-button:disabled {
+  color: var(--grey-400);
+  cursor: not-allowed;
+}

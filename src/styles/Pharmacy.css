@@ -1,0 +1,159 @@
+.pharmacy-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.pharmacy-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pharmacy-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.pharmacy-title-icon {
+  font-size: 40px;
+  color: var(--primary-main);
+  margin-right: 16px;
+}
+
+.pharmacy-title-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.pharmacy-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.pharmacy-search {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.pharmacy-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.pharmacy-tabs {
+  margin-bottom: 2rem;
+}
+
+.pharmacy-upload-section {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.pharmacy-upload-card {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.pharmacy-upload-icon {
+  font-size: 64px;
+  color: var(--primary-main);
+  margin-bottom: 1.5rem;
+}
+
+.pharmacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.medicine-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.medicine-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.medicine-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  margin: 0 auto 1rem;
+  object-fit: cover;
+}
+
+.medicine-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.medicine-brand {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.medicine-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.medicine-current-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-main);
+}
+
+.medicine-original-price {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+.medicine-discount {
+  background-color: var(--secondary-main);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.medicine-button {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .pharmacy-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pharmacy-title-text {
+    font-size: 2rem;
+  }
+  
+  .pharmacy-title {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .pharmacy-title-icon {
+    margin-right: 0;
+  }
+}

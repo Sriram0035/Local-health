@@ -1,0 +1,243 @@
+.cart-drawer {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .cart-drawer {
+    width: 400px;
+  }
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.cart-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-badge {
+  background-color: var(--secondary-main);
+  color: var(--white);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-content {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem 0;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.cart-empty-icon {
+  font-size: 64px;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.cart-empty-title {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.cart-empty-description {
+  color: var(--text-secondary);
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.cart-item-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.cart-item-brand {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+}
+
+.cart-item-pricing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.cart-item-price {
+  font-weight: bold;
+  color: var(--primary-main);
+}
+
+.cart-item-original-price {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-size: 0.875rem;
+}
+
+.cart-item-discount {
+  background-color: var(--secondary-main);
+  color: var(--white);
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart-quantity-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--grey-300);
+  background: var(--white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cart-quantity-button:hover {
+  border-color: var(--primary-main);
+  color: var(--primary-main);
+}
+
+.cart-quantity-input {
+  width: 60px;
+  height: 32px;
+  border: 1px solid var(--grey-300);
+  border-radius: 4px;
+  text-align: center;
+  margin: 0 4px;
+}
+
+.cart-remove-button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  color: var(--error-main);
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.cart-remove-button:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.cart-checkout {
+  border-top: 1px solid var(--grey-200);
+  padding: 1rem;
+}
+
+.cart-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.cart-price-label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.cart-price-value {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.cart-price-free {
+  color: var(--success-main);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--grey-300);
+}
+
+.cart-total-label {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.cart-total-value {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-main);
+}
+
+.cart-checkout-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

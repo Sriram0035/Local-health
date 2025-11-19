@@ -1,0 +1,8 @@
+.doctor-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.doctor-buttons .btn {
+  flex: 1;
+}

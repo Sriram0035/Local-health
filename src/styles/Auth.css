@@ -1,0 +1,157 @@
+.auth-dialog {
+  border-radius: 12px;
+}
+
+.auth-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.auth-dialog-title-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.auth-dialog-content {
+  padding: 1.5rem;
+}
+
+.auth-alert {
+  margin-bottom: 1rem;
+}
+
+.auth-social-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-social-button {
+  flex: 1;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid var(--grey-300);
+  background: var(--white);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.auth-social-button:hover {
+  border-color: var(--primary-main);
+  background-color: rgba(46, 125, 50, 0.05);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--grey-300);
+}
+
+.auth-divider-text {
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form-field {
+  width: 100%;
+}
+
+.auth-password-field {
+  position: relative;
+}
+
+.auth-password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.auth-forgot-password {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.auth-forgot-link {
+  color: var(--primary-main);
+  text-decoration: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.auth-forgot-link:hover {
+  text-decoration: underline;
+}
+
+.auth-submit-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.auth-switch-text {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.auth-switch-link {
+  color: var(--primary-main);
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.auth-switch-link:hover {
+  text-decoration: underline;
+}
+
+/* Signup specific styles */
+.auth-signup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .auth-social-buttons {
+    flex-direction: column;
+  }
+  
+  .auth-signup-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .auth-dialog {
+    margin: 1rem;
+  }
+}

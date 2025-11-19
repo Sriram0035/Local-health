@@ -1,0 +1,325 @@
+.health-records-dialog {
+  border-radius: 12px;
+}
+
+.health-records-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.health-records-dialog-title-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.health-records-dialog-content {
+  padding: 1.5rem;
+}
+
+.health-records-upload-card {
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.health-records-upload-icon {
+  font-size: 48px;
+  color: var(--primary-main);
+  margin-bottom: 1rem;
+}
+
+.health-records-upload-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.health-records-upload-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.health-records-upload-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.health-records-upload-input {
+  display: none;
+}
+
+.health-records-section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.health-records-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.health-records-empty {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.health-records-empty-icon {
+  font-size: 64px;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.health-records-empty-title {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.health-records-empty-description {
+  color: var(--text-secondary);
+}
+
+.health-records-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--grey-200);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.health-records-item:hover {
+  background-color: var(--grey-50);
+}
+
+.health-records-item-icon {
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.health-records-item-content {
+  flex: 1;
+}
+
+.health-records-item-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.health-records-item-title {
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.health-records-item-meta {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.health-records-item-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.health-records-item-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.health-records-item-button:hover {
+  background-color: var(--grey-200);
+}
+
+.health-records-context-menu {
+  border-radius: 8px;
+}
+
+/* Prescription Upload Styles */
+.prescription-upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.prescription-upload-section {
+  margin-bottom: 1.5rem;
+}
+
+.prescription-upload-card {
+  text-align: center;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.prescription-uploaded-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prescription-uploaded-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--grey-200);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.prescription-uploaded-icon {
+  margin-right: 1rem;
+  color: var(--primary-main);
+}
+
+.prescription-uploaded-details {
+  flex: 1;
+}
+
+.prescription-uploaded-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+}
+
+.prescription-uploaded-meta {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.prescription-uploaded-status {
+  margin-right: 8px;
+  background-color: var(--warning-main);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.prescription-suggestions {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.prescription-suggestions-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 8px;
+}
+
+.prescription-suggestions-icon {
+  color: var(--primary-main);
+}
+
+.prescription-suggestions-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.prescription-suggestions-description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.prescription-suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.prescription-suggestion-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--grey-200);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.prescription-suggestion-details {
+  flex: 1;
+}
+
+.prescription-suggestion-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+}
+
+.prescription-suggestion-meta {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.prescription-suggestion-button {
+  padding: 6px 12px;
+  border: 1px solid var(--primary-main);
+  background: transparent;
+  color: var(--primary-main);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.prescription-suggestion-button:hover {
+  background-color: var(--primary-main);
+  color: var(--white);
+}
+
+.prescription-tip {
+  background-color: var(--success-main);
+  color: var(--white);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .prescription-upload-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .health-records-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .health-records-item-actions {
+    align-self: flex-end;
+  }
+}
